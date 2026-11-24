@@ -1,3 +1,4 @@
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lab05_lesson07/main.dart';
@@ -6,7 +7,14 @@ void main() {
   testWidgets('Bottom navigation switches between four screens', (
     WidgetTester tester,
   ) async {
-    await tester.pumpWidget(const MaterialApp(home: BottomNavLab()));
+    await tester.pumpWidget(
+  ChangeNotifierProvider(
+    create: (_) => TabModel(),
+    child: const MaterialApp(
+      home: BottomNavLab(),
+    ),
+  ),
+);
 
     // Home is selected by default.
     expect(
